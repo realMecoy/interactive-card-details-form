@@ -34,6 +34,8 @@ const cvcError = document.querySelector("#cvc--error");
 
 const date = new Date();
 const currentYear = date.getFullYear().toString().slice(-2);
+const month = date.getMonth() + 1;
+console.log(month);
 
 const cleaveCardNumber = new Cleave("#card__number", {
   creditCard: true,
@@ -74,6 +76,9 @@ function errorConditionals() {
   if (monthInput.value === "") {
     monthError.textContent = monthError.dataset.error;
     monthInput.classList.add("outline", "error");
+  } else if (monthInput.value <= month && yearInput.value === currentYear) {
+    // monthError.textContent = "Expired Card!";
+    monthInput.classList.add("outline", "error");
   } else {
     monthError.textContent = "";
     monthInput.classList.remove("outline", "error");
@@ -81,7 +86,7 @@ function errorConditionals() {
 
   if (yearInput.value === "") {
     yearInput.classList.add("outline", "error");
-  } else if (yearInput.value <= currentYear || yearInput.value < 10) {
+  } else if (yearInput.value <= currentYear || yearInput.value < 10 || monthInput.value <= month) {
     console.log(currentYear);
     yearInput.classList.add("outline", "error");
     yearError.textContent = "Expired Card!";
