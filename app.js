@@ -86,7 +86,7 @@ function errorConditionals() {
 
   if (yearInput.value === "") {
     yearInput.classList.add("outline", "error");
-  } else if (yearInput.value <= currentYear || yearInput.value < 10 || monthInput.value <= month) {
+  } else if (yearInput.value <= currentYear) {
     console.log(currentYear);
     yearInput.classList.add("outline", "error");
     yearError.textContent = "Expired Card!";
